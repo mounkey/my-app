@@ -39,13 +39,20 @@ pipeline {
         }
       }
     }
-    post{
-      failure{
-        slackSend( channel: "#fundamentos-devops", token:  'Token-slack2', color: "good", message: "${custom_msg()}")
-        }
-      success{
-        slackSend(channel: "#dundamentos-devops", message: 'Funcionó :smile: JP saludos :star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' )
+    if(currentBuild.result == 'FAILURE')
+    {
+      post{
+        failure{
+          slackSend( channel: "#fundamentos-devops", token:  'Token-slack2', color: "good", message: "${custom_msg()}")
+          }
       }
+    } else {
+      post{
+        success{
+        slackSend(channel: "#fundamentos-devops", message: 'Funcionó :smile: JP saludos :star:', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' )
+        }
+      }
+     }
   }
 
   def custom_msg()
