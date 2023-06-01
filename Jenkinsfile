@@ -5,24 +5,7 @@ pipeline {
             steps {
                 sh 'mvn -B package'
             }
-        }
-
-        stage('SonarQube analysis') {
-          environment {
-                SCANNER_HOME = tool 'SonarQube Conexion'
-            }
-            steps {
-              withSonarQubeEnv(credentialsId: 'SecretTokenId', installationName: 'SonarQube') {
-              sh '''$SCANNER_HOME/bin/sonar-scanner \
-              -Dsonar.projectKey=projectKey \
-              -Dsonar.projectName=projectName \
-              -Dsonar.sources=src/ \
-              -Dsonar.java.binaries=target/classes/ \
-              -Dsonar.exclusions=src/test/java/****/*.java \
-              -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
-             }
-            }
-          }
+        }   
 
         stage("Publish to Nexus Repository Manager") {
           steps {
