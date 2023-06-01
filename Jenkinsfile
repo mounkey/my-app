@@ -40,8 +40,13 @@ pipeline {
       }
     }
     post{
-      failure{
-         slackSend( channel: "#dundamentos-devops", message: 'Funcionó :smile: JP saludos :star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' )        
+      always{
+        script{
+          if(currentBuild.result == 'FAILURE'){
+            def custom_msg = custom_msg()
+            slackSend (color: '#FF0000', message: "${custom_msg}")
+          }
+        }
       }
   }
 
