@@ -44,7 +44,7 @@ pipeline {
         slackSend( channel: "#fundamentos-devops", token:  'Token-slack2', color: "good", message: "${custom_msg()}")
         }
       success{
-        slackSend( channel: "#dundamentos-devops", message: 'Funcionó :smile: JP saludos :star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' )                    )
+        slackSend(channel: "#dundamentos-devops", message: 'Funcionó :smile: JP saludos :star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' )
       }
   }
 
