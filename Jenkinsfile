@@ -40,10 +40,10 @@ pipeline {
       }
       stage('SonarQube analysis') {
           environment {
-                SCANNER_HOME = tool 'SonarConexion'
+                SCANNER_HOME = tool 'SonarQubeConection'
             }
             steps {
-              withSonarQubeEnv(credentialsId: 'SecretIdToken', installationName: 'SonarQubeConection') {
+              withSonarQubeEnv(credentialsId: 'SecretIdToken', installationName: 'SonarConexion') {
               sh '''$SCANNER_HOME/bin/sonar-scanner \
               -Dsonar.projectKey=projectKey \
               -Dsonar.projectName=projectName \
