@@ -1,5 +1,3 @@
-ambiar, sin embargo seguirá esta estructura.
-
 pipeline {
     agent any
         stages {
