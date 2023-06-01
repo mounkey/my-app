@@ -3,7 +3,7 @@ pipeline {
       stages {
         stage('Build') {
             steps {
-                sh 'mvn -B package'
+              sh 'mvn -B package'
               def condition = true
             }
         }   
@@ -47,6 +47,8 @@ pipeline {
         slackSend( channel: "#fundamentos-devops", token:  'Token-slack2', color: "good", message: "${custom_msg()}")
       }
   }
+
+} 
 
   def custom_msg()
   {
