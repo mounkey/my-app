@@ -40,9 +40,9 @@ pipeline {
       }
     }
     post{
-      If(currentBuild.result == "FAILURE"){
+      if(currentBuild.result == "FAILURE"){
           slackSend( channel: "#fundamentos-devops", token:  'Token-slack2', color: "good", message: "${custom_msg()}")
-        }else{
+        } else {
           slackSend channel: '#fundamentos-devops', color: '#000', message: 'Funcionó :smile: JP saludos :star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto'
         }
       }
