@@ -44,7 +44,9 @@ pipeline {
         script{
           if(currentBuild.result == 'FAILURE'){
             def custom_msg = custom_msg()
-            slackSend (color: '#FF0000', message: "${custom_msg}")
+            slackSend( channel: "#fundamentos-de-devops", token: "slack_webhook token", color: "good", message: "${custom_msg()}")
+          } else {
+            slackSend channel: '#fundamentos-devops', color: '#000', message: 'Funcionó :smile: JP saludos :star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto'
           }
         }
       }
