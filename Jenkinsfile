@@ -9,7 +9,7 @@ pipeline {
 
         stage('SonarQube analysis') {
           environment {
-                SCANNER_HOME = tool 'SonarQube Conexion'
+                SCANNER_HOME = tool 'SecredIdToken'
             }
             steps {
               withSonarQubeEnv(credentialsId: 'SecretTextContent', installationName: 'SonarQube') {
