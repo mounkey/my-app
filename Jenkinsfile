@@ -62,14 +62,14 @@ pipeline {
         failure {
             script {
                 // Envía el mensaje de error a Slack
-                slackSend channel: '#general', message: "¡Atención! Hubo un error durante la compilación.", color: 'danger', , teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' // 
+                slackSend channel: '#general', message: "¡Atención! Hubo un error durante la compilación.", color: 'danger',  teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' // 
             }
         }
 
         success {
             script {
                 // Envía el mensaje de felicitaciones a Slack
-                slackSend channel: '#general', message: '¡Felicidades! No hubo errores durante la compilación.', color: 'good', , teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' //
+                slackSend channel: '#general', message: '¡Felicidades! No hubo errores durante la compilación.', color: 'good', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' //
             }
         }
     }
