@@ -62,13 +62,13 @@ pipeline {
       always{
        failure{
           script{
-            slackSend( channel: "#fundamentos-de-devops", token: "Token-slack2", color: "good", message: "algun error en el proceso y ${err}")
+            slackSend( channel: "#fundamentos-de-devops", token: "Token-slack2", color: "good", message: "algun error en el proceso", username: 'Juan Pablo Grover Pinto')
           } 
         }
 
         success{
           script{
-            slackSend channel: '#fundamentos-devops', color: '#000', message: 'Funcionó :smile: JP saludos '+ mav +':star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto'
+            slackSend channel: '#fundamentos-devops', color: '#000', message: 'Funcionó :smile: JP saludos :star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto'
           }
         }
       }
