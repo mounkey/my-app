@@ -3,9 +3,7 @@ pipeline {
       stages {
         stage('Build') {
             steps {
-              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh 'mvn -B package'
-              }
+              sh 'mvn -B package'
             }
         }   
 
