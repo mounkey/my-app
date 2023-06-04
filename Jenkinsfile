@@ -4,7 +4,6 @@ pipeline {
         stage('Build') {
             steps {
               sh 'mvn -B package'
-              def sl = "Build Success"
             }
         }   
 
@@ -35,11 +34,10 @@ pipeline {
               );
             } else {
               error "*** File: ${artifactPath}, could not be found";
-              def err = "File: ${artifactPath}, could not be found";
             }
           }
         }
-        mav += "Publish to Nexus Repository Manager Success";
+        
       }
       stage('SonarQube analysis') {
           environment {
@@ -56,16 +54,20 @@ pipeline {
               -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
              }
             }
-            mav += "SonarQube analysis Success";
+        
           }
 
     }
     post{
       always{
-        script{
-          if(currentBuild.result == 'FAILURE'){
+       failure{
+          script{
             slackSend( channel: "#fundamentos-de-devops", token: "Token-slack2", color: "good", message: "algun error en el proceso y ${err}")
-          } else {
+          } 
+        }
+
+        success{
+          script{
             slackSend channel: '#fundamentos-devops', color: '#000', message: 'Funcionó :smile: JP saludos '+ mav +':star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto'
           }
         }
