@@ -58,21 +58,29 @@ pipeline {
           }
 
     }
-    post{
-      always{
-       Failure{
-          script{
-            slackSend( channel: "#fundamentos-de-devops", token: "Token-slack2", color: "good", message: "algun error en el proceso", username: 'Juan Pablo Grover Pinto')
-          } 
+    post {
+        failure {
+            script {
+                // Envía el mensaje de error a Slack
+                slackSend channel: '#general', message: "¡Atención! Hubo un error durante la compilación.", color: 'danger', , teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' // 
+            }
         }
 
-        Success{
-          script{
-            slackSend channel: '#fundamentos-devops', color: '#000', message: 'Funcionó :smile: JP saludos :star:   ', teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto'
-          }
+        success {
+            script {
+                // Envía el mensaje de felicitaciones a Slack
+                slackSend channel: '#general', message: '¡Felicidades! No hubo errores durante la compilación.', color: 'good', , teamDomain: 'sustantiva-sede', tokenCredentialId: 'Token-slack2', username: 'Juan Pablo Grover Pinto' //
+            }
         }
-      }
-  }
+    }
+}
+
+En este ejemplo, el bloque catchError captura cualquier error que ocurra durante la compilación. Si no hay errores, no se ejecuta ninguna acción adicional en ese bloque. En la sección post, se utiliza un bloque failure para enviar un mensaje de error a Slack si la etapa falla, y un bloque success para enviar un mensaje de felicitaciones si la etapa tiene éxito.
+
+Asegúrate de tener instalado el plugin de Slack en tu instancia de Jenkins y de haber configurado adecuadamente la integración con Slack en la configuración global de Jenkins.
+
+Recuerda adaptar el código a tus necesidades específicas, como el nombre del canal de Slack y los mensajes que deseas enviar. También puedes agregar más etapas y lógica a tu Pipeline según tus requisitos.
+
 
 } 
 
